@@ -6,6 +6,7 @@ const dartSass = require('sass');
 const gulpSass = require('gulp-sass')(dartSass);
 const terser = require('gulp-terser');
 const sharp = require('sharp');
+const rename = require('gulp-rename');
 
 const paths = {
     scss: 'src/scss/**/*.scss',
