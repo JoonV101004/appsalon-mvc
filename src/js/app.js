@@ -115,7 +115,7 @@ function paginaSiguiente() {
 }
 
 async function consultarAPI() {
- const url = '/api/servicios';
+ const url = 'appsalon-mvc-equipopruebas.sgp.dom.my.id/api/servicios';
     try {
         //const url = '/api/servicios';
         const resultado = await fetch(url);
