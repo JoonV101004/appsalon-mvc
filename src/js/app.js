@@ -1,4 +1,4 @@
-const url = "/api/servicios";
+
 
 let paso = 1;
 const pasoInicial = 1;
