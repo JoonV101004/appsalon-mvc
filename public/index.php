@@ -39,7 +39,7 @@ $router->post('/api/citas', [APIController::class, 'guardar']);
 $router->post('/api/eliminar', [APIController::class, 'eliminar']);
 
 // CRUD de Servicios
-$router->get('api/servicios', [ServicioController::class, 'index']);
+$router->get('/servicios', [ServicioController::class, 'index']);
 $router->get('/servicios/crear', [ServicioController::class, 'crear']);
 $router->post('/servicios/crear', [ServicioController::class, 'crear']);
 $router->get('/servicios/actualizar', [ServicioController::class, 'actualizar']);

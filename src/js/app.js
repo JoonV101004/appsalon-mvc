@@ -117,13 +117,13 @@ function paginaSiguiente() {
 async function consultarAPI() {
  //const url = 'appsalon-mvc-equipopruebas.sgp.dom.my.id/api/servicios';
     try {
-        const url = '/api/servicios';
-        const resultado = await fetch(url);
+        const e = '/api/servicios';
+        const resultado = await fetch(e);
         const servicios = await resultado.json();
         mostrarServicios(servicios);
     
-    } catch (error) {
-        console.log(error);
+    } catch (e) {
+        console.log(e);
     }
 }
 
