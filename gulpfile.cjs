@@ -75,5 +75,5 @@ exports.js = js;
 exports.imagenes = imagenes;
 exports.dev = dev;
 exports.default = series(js, css, imagenes, dev);
-exports.build = series(js, css, imagenes);
+
 
