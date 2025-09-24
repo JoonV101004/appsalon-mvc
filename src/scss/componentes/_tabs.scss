@@ -1,5 +1,7 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
+@use 'sass:color';
+
 
 .tabs {
 
@@ -22,7 +24,7 @@
 
         &:hover {
             cursor: pointer;
-            background-color: darken(v.$azul, 10%);
+            background-color: color.adjust(v.$azul, $lightness: -10%);
         }
         &.actual {
             background-color: v.$blanco;

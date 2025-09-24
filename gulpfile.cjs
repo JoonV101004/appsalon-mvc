@@ -69,11 +69,10 @@ function dev() {
     watch('src/img/**/*.{png,jpg}', imagenes);
 }
 
-// Exportar tareas
+// Export tasks
 exports.css = css;
 exports.js = js;
 exports.imagenes = imagenes;
 exports.dev = dev;
 exports.default = series(js, css, imagenes, dev);
-
 
