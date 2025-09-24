@@ -25,8 +25,6 @@ function css(done) {
 function js(done) {
     src(paths.js)
         .pipe(terser())
-        .pipe(rename({ suffix: '.min' }))
-
         .pipe(dest('./public/build/js'));
     done();
 }
