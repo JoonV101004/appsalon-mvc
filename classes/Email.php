@@ -60,7 +60,7 @@ class Email {
         $mail->Password = $_ENV['EMAIL_PASS'];
     
         $mail->setFrom('vjoondominic@gmail.com', 'AppSalon');
-         $mail->addAddress('vjoondominic@gmail.com', 'Soporte AppSalon');
+         $mail->addAddress($email, 'Soporte AppSalon');
         $mail->Subject = 'Reestablece tu password';
 
         // Set HTML
