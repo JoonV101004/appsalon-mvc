@@ -29,7 +29,7 @@ class Email {
          $mail->Password = $_ENV['EMAIL_PASS'];
      
          $mail->setFrom('vjoondominic@gmail.com', 'AppSalon');
-         $mail->addAddress(%$this->email;, 'Soporte AppSalon');
+         $mail->addAddress($this->email, $this->nombre);
          $mail->Subject = 'Confirma tu Cuenta';
 
          // Set HTML
