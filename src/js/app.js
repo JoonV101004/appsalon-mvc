@@ -369,6 +369,7 @@ async function reservarCita() {
     }
 
     //comentario de prueba.
+    //ekaGC
     // console.log([...datos]);
 
 }
