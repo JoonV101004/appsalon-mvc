@@ -26,8 +26,8 @@ class APIController {
         $idServicios = explode(",", $_POST['servicios']);
         foreach($idServicios as $idServicio) {
             $args = [
-                'citaid' => $id,
-                'servicioid' => $idServicio
+                'citaId' => $id,
+                'servicioId' => $idServicio
             ];
             $citaServicio = new CitaServicio($args);
             $citaServicio->guardar();
