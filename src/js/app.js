@@ -370,6 +370,7 @@ async function reservarCita() {
 
     //comentario de prueba.
     //ekaGC
+    //chapata
     // console.log([...datos]);
 
 }
