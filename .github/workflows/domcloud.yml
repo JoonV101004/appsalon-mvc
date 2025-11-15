@@ -1,1 +1,20 @@
+name: Desplegar en Domcloud
 
+on:
+  push:
+    branches:
+      - main  # <-- Se activará solo al hacer 'push' a la rama 'main'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Desplegar en Domcloud
+        uses: domcloud/action@v1
+        with:
+          # Estos son los 3 secretos que configuraremos en el siguiente paso
+          api_key: ${{ secrets.DOMCLOUD_API_KEY }}
+          server_id: ${{ secrets.DOMCLOUD_SERVER_ID }}
+          username: ${{ secrets.DOMCLOUD_USERNAME }}
