@@ -33,7 +33,12 @@ class APIController {
             $citaServicio->guardar();
         }
 
-        echo json_encode(['resultado' => $resultado]);
+        echo json_encode([
+            'resultado' => true,
+            'id' => $id,
+            'mensaje' => 'Cita guardada correctamente'
+        ]);
+
     }
 
     public static function eliminar() {
