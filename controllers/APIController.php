@@ -38,7 +38,7 @@ class APIController {
             'id' => $id,
             'mensaje' => 'Cita guardada correctamente'
         ]);
-
+        
     }
 
     public static function eliminar() {
