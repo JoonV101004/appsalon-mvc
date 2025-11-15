@@ -368,7 +368,7 @@ async function reservarCita() {
         })
     }
 
-    
+    //comentario de prueba.
     // console.log([...datos]);
 
 }
