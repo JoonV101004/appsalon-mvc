@@ -1,4 +1,11 @@
 <?php 
+
+// Pega estas 3 líneas en la parte superior
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// El resto de tu código...
 spl_autoload_register(function ($class) {
     if (strpos($class, 'Model\\') === 0) {
         $class = str_replace('Model\\', '', $class);
