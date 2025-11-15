@@ -339,7 +339,7 @@ async function reservarCita() {
 
     try {
         // Petición hacia la api
-        const url = '/api/citas'
+        const url = '/api/cita'
         const respuesta = await fetch(url, {
             method: 'POST',
             body: datos
