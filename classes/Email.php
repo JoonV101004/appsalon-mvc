@@ -55,7 +55,7 @@ class Email {
             // Esto nos dirá el error exacto de Domcloud
             echo "Error: El mensaje no se pudo enviar. Mailer Error: {$mail->ErrorInfo}";
             exit; // Detenemos todo para poder ver el error
-         }
+         } //prueba
     }
 
     public function enviarInstrucciones() {
