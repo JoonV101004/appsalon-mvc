@@ -322,7 +322,7 @@ function mostrarResumen() {
 
 async function reservarCita() {
     
-    const { nombre, fecha, hora, servicios, id } = cita;
+    const { nombre, fecha, hora, servicios, id} = cita;
 
     const idServicios = servicios.map( servicio => servicio.id );
     // console.log(idServicios);
@@ -330,7 +330,7 @@ async function reservarCita() {
     const datos = new FormData();
     
     datos.append('fecha', fecha);
-    datos.append('hora', hora );
+    datos.append('hora', hora);
     datos.append('usuarioId', id);
     datos.append('servicios', idServicios.join(','));
 
@@ -368,9 +368,7 @@ async function reservarCita() {
         })
     }
 
-    //comentario de prueba.
-    //ekaGC
-    //chapata
+    
     // console.log([...datos]);
 
 }
