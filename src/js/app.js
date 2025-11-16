@@ -348,18 +348,30 @@ async function reservarCita() {
         const resultado = await respuesta.json();
         console.log(resultado);
         
-        if(resultado.resultado) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Cita Creada',
-                text: 'Tu cita fue creada correctamente',
-                button: 'OK'
-            }).then( () => {
-                setTimeout(() => {
-                    window.location.reload();
-                }, 3000);
-            })
-        }
+
+    
+       if(resultado.resultado) {
+    Swal.fire({
+        icon: 'success',
+        title: 'Cita Creada',
+        text: 'Tu cita fue creada correctamente',
+    }).then(() => {
+        setTimeout(() => window.location.reload(), 3000);
+    });
+
+} else {
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: resultado.mensaje || 'No se pudo guardar la cita, verifica los datos.'
+    });
+}
+        
+
+
+
+
+
     } catch (error) {
         Swal.fire({
             icon: 'error',
