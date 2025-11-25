@@ -25,6 +25,7 @@ function esUltimo(string $actual, string $proximo): bool {
 function isAuth() : void {
     if(!isset($_SESSION['login'])) {
         header('Location: /');
+        exit;
     }
 
     // Dicen al navegador: "No guardes nada en caché"
