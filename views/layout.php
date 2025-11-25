@@ -20,21 +20,25 @@
     ?>
 
     <script>
-    // 1. AL ENTRAR: Detectar si venimos del botón "Atrás"
+    // 1. Lógica para el botón "Atrás" (Recarga forzosa)
     window.onpageshow = function(event) {
-        // Si la página viene de la caché (bfcache)
         if (event.persisted) {
             window.location.reload();
         }
     };
 
-    // 2. AL SALIR: "Limpiar la casa" antes de irnos
-    // Esto se ejecuta justo cuando el usuario hace clic en un link o cierra sesión
-    window.addEventListener('beforeunload', function () {
-        // Ocultamos todo el cuerpo de la página
-        document.body.style.display = 'none';
-        // Opcional: También podrías poner el fondo blanco explícitamente
-        document.body.style.backgroundColor = 'white'; 
+    // 2. Lógica "Nuclear" al hacer clic en Cerrar Sesión
+    // Buscamos todos los elementos con la clase 'cerrar-sesion'
+    const botonesCerrarSesion = document.querySelectorAll('.cerrar-sesion');
+
+    botonesCerrarSesion.forEach(boton => {
+        boton.addEventListener('click', function(e) {
+            // Nota: No prevenimos el default, dejamos que nos lleve a /logout
+            
+            // PERO INMEDIATAMENTE borramos todo el contenido visual
+            document.body.innerHTML = ''; 
+            document.body.style.backgroundColor = 'white';
+        });
     });
     </script>
             
