@@ -76,9 +76,9 @@ class Usuario extends ActiveRecord {
             self::$alertas['error'][] = 'El Password es Obligatorio';
         } elseif (strlen($this->password) < 6) {
             self::$alertas['error'][] = 'El password debe contener al menos 6 caracteres';
-        } elseif (strlen($this->password) > 60) {
+        } elseif (strlen($this->password) > 30) {
             // Nota: El hash de bcrypt siempre es de 60 chars, pero la entrada del usuario no debería ser kilométrica
-            self::$alertas['error'][] = 'El password es demasiado largo';
+            self::$alertas['error'][] = 'El password es demasiado largo, introduce un password entre 6 y 30 caracteres.';
         }
 
         return self::$alertas;
