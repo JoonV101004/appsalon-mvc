@@ -18,6 +18,15 @@
     <?php
         echo $script ?? '';
     ?>
+
+    <script>
+    // Detectar si la página se cargó desde la caché del botón "Atrás"
+    window.onpageshow = function(event) {
+        if (event.persisted) {
+            window.location.reload();
+        }
+    };
+    </script>
             
 </body>
 </html>
