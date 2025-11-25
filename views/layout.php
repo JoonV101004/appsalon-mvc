@@ -20,12 +20,22 @@
     ?>
 
     <script>
-    // Detectar si la página se cargó desde la caché del botón "Atrás"
+    // 1. AL ENTRAR: Detectar si venimos del botón "Atrás"
     window.onpageshow = function(event) {
+        // Si la página viene de la caché (bfcache)
         if (event.persisted) {
             window.location.reload();
         }
     };
+
+    // 2. AL SALIR: "Limpiar la casa" antes de irnos
+    // Esto se ejecuta justo cuando el usuario hace clic en un link o cierra sesión
+    window.addEventListener('beforeunload', function () {
+        // Ocultamos todo el cuerpo de la página
+        document.body.style.display = 'none';
+        // Opcional: También podrías poner el fondo blanco explícitamente
+        document.body.style.backgroundColor = 'white'; 
+    });
     </script>
             
 </body>
