@@ -35,14 +35,14 @@ class Usuario extends ActiveRecord {
         if(!$this->nombre) {
             self::$alertas['error'][] = 'El Nombre es Obligatorio';
         } elseif (strlen($this->nombre) > 60) {
-            self::$alertas['error'][] = 'El Nombre es muy largo (Máximo 60 caracteres)';
+            self::$alertas['error'][] = 'El Nombre es muy largo.';
         }
 
         // 2. Validaciones de APELLIDO
         if(!$this->apellido) {
             self::$alertas['error'][] = 'El Apellido es Obligatorio';
         } elseif (strlen($this->apellido) > 60) {
-            self::$alertas['error'][] = 'El Apellido es muy largo (Máximo 60 caracteres)';
+            self::$alertas['error'][] = 'El Apellido es muy largo.';
         }
 
         // 3. Validaciones de TELÉFONO
@@ -57,7 +57,7 @@ class Usuario extends ActiveRecord {
         } else {
             // Validación de longitud (Basado en tu BD actual, aunque recomiendo ampliarlo)
             if(strlen($this->email) > 60) {
-                self::$alertas['error'][] = 'El Email es muy largo (Máximo 60 caracteres)';
+                self::$alertas['error'][] = 'El Email es muy largo.';
             }
             
             // Validación de sintaxis (formato correcto)
@@ -78,7 +78,7 @@ class Usuario extends ActiveRecord {
             self::$alertas['error'][] = 'El password debe contener al menos 6 caracteres';
         } elseif (strlen($this->password) > 30) {
             // Nota: El hash de bcrypt siempre es de 60 chars, pero la entrada del usuario no debería ser kilométrica
-            self::$alertas['error'][] = 'El password es demasiado largo, introduce un password entre 6 y 30 caracteres.';
+            self::$alertas['error'][] = 'El password es demasiado largo.';
         }
 
         return self::$alertas;
