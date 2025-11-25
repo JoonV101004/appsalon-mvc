@@ -19,24 +19,59 @@ class LoginController {
                 $usuario = Usuario::where('email', $auth->email);
 
                 if($usuario) {
-                    // Verificar el password
-                    if( $usuario->comprobarPasswordAndVerificado($auth->password) ) {
-                        // Autenticar el usuario
-                        session_start();
+                    
+                    // 1. VERIFICAR SI ESTÁ BLOQUEADO
+                    // Si tiene 3 o más intentos, no lo dejamos pasar aunque la contraseña esté bien (opcional)
+                    // O simplemente le avisamos.
+                    if( intval($usuario->intentos) >= 3 ) {
+                        Usuario::setAlerta('error', 'Tu cuenta ha sido bloqueada por intentos fallidos. Por favor recupera tu contraseña.');
+                    } else {
+                        
+                        // 2. VERIFICAR EL PASSWORD
+                        // Nota: Debemos cambiar un poco tu función comprobarPasswordAndVerificado
+                        // para manejar esto desde el controlador, o modificarla allá.
+                        // Para no romper tu código, hagámoslo así:
 
-                        $_SESSION['id'] = $usuario->id;
-                        $_SESSION['nombre'] = $usuario->nombre . " " . $usuario->apellido;
-                        $_SESSION['email'] = $usuario->email;
-                        $_SESSION['login'] = true;
+                        if( password_verify($auth->password, $usuario->password) ) {
+                            // -- PASSWORD CORRECTO --
 
-                        // Redireccionamiento
-                        if($usuario->admin === "1") {
-                            $_SESSION['admin'] = $usuario->admin ?? null;
-                            header('Location: /admin');
+                            if($usuario->confirmado === "1") {
+                                // El usuario entró bien, reiniciamos el contador a 0
+                                $usuario->intentos = 0;
+                                $usuario->guardar();
+
+                                // ... (Tu código de sesión original) ...
+                                session_start();
+                                $_SESSION['id'] = $usuario->id;
+                                $_SESSION['nombre'] = $usuario->nombre . " " . $usuario->apellido;
+                                $_SESSION['email'] = $usuario->email;
+                                $_SESSION['login'] = true;
+
+                                if($usuario->admin === "1") {
+                                    $_SESSION['admin'] = $usuario->admin ?? null;
+                                    header('Location: /admin');
+                                } else {
+                                    header('Location: /cita');
+                                }
+                            } else {
+                                Usuario::setAlerta('error', 'Tu cuenta no ha sido confirmada');
+                            }
+
                         } else {
-                            header('Location: /cita');
+                            // -- PASSWORD INCORRECTO --
+                            
+                            // Aumentamos los intentos
+                            $usuario->intentos++;
+                            $usuario->guardar();
+
+                            if($usuario->intentos >= 3) {
+                                Usuario::setAlerta('error', 'Cuenta Bloqueada. Has excedido el límite de intentos.');
+                            } else {
+                                Usuario::setAlerta('error', 'Password Incorrecto');
+                            }
                         }
                     }
+
                 } else {
                     Usuario::setAlerta('error', 'Usuario no encontrado');
                 }
@@ -121,6 +156,22 @@ class LoginController {
                 $usuario->password = $password->password;
                 $usuario->hashPassword();
                 $usuario->token = null;
+
+                $resultado = $usuario->guardar();
+                if($resultado) {
+                    header('Location: /');
+                }
+            }
+
+            if(empty($alertas)) {
+                $usuario->password = null;
+                $usuario->password = $password->password;
+                $usuario->hashPassword();
+                $usuario->token = null;
+                
+                // === AGREGAR ESTA LÍNEA ===
+                $usuario->intentos = 0; // Desbloqueamos al usuario
+                // ==========================
 
                 $resultado = $usuario->guardar();
                 if($resultado) {
