@@ -31,26 +31,59 @@ class Usuario extends ActiveRecord {
 
     // Mensajes de validación para la creación de una cuenta
     public function validarNuevaCuenta() {
+        // 1. Validaciones de NOMBRE
         if(!$this->nombre) {
             self::$alertas['error'][] = 'El Nombre es Obligatorio';
+        } elseif (strlen($this->nombre) > 60) {
+            self::$alertas['error'][] = 'El Nombre es muy largo (Máximo 60 caracteres)';
         }
+
+        // 2. Validaciones de APELLIDO
         if(!$this->apellido) {
             self::$alertas['error'][] = 'El Apellido es Obligatorio';
+        } elseif (strlen($this->apellido) > 60) {
+            self::$alertas['error'][] = 'El Apellido es muy largo (Máximo 60 caracteres)';
         }
+
+        // 3. Validaciones de TELÉFONO
+        if(!$this->telefono) {
+            self::$alertas['error'][] = 'El Teléfono es Obligatorio';
+        } elseif (!preg_match('/^[0-9]{10}$/', $this->telefono)) {
+            self::$alertas['error'][] = 'El teléfono debe contener exactamente 10 números';
+        }
+        // 4. Validaciones de EMAIL
         if(!$this->email) {
             self::$alertas['error'][] = 'El Email es Obligatorio';
+        } else {
+            // Validación de longitud (Basado en tu BD actual, aunque recomiendo ampliarlo)
+            if(strlen($this->email) > 60) {
+                self::$alertas['error'][] = 'El Email es muy largo (Máximo 60 caracteres)';
+            }
+            
+            // Validación de sintaxis (formato correcto)
+            if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+                self::$alertas['error'][] = 'El Email no tiene un formato válido';
+            } else {
+                // Validación de Dominio (DNS)
+                list($user, $domain) = explode('@', $this->email);
+                if (!checkdnsrr($domain, 'MX')) {
+                    self::$alertas['error'][] = 'El dominio del correo no existe o no puede recibir emails';
+                }
+            }
         }
+        // 5. Validaciones de PASSWORD
         if(!$this->password) {
             self::$alertas['error'][] = 'El Password es Obligatorio';
-        }
-        if(strlen($this->password) < 6) {
+        } elseif (strlen($this->password) < 6) {
             self::$alertas['error'][] = 'El password debe contener al menos 6 caracteres';
+        } elseif (strlen($this->password) > 60) {
+            // Nota: El hash de bcrypt siempre es de 60 chars, pero la entrada del usuario no debería ser kilométrica
+            self::$alertas['error'][] = 'El password es demasiado largo';
         }
-
-
 
         return self::$alertas;
     }
+
 
     public function validarLogin() {
         if(!$this->email) {
