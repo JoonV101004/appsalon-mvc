@@ -9,14 +9,11 @@ class ServicioController {
     public static function index(Router $router) {
         session_start();
 
-       // isAdmin();
+        isAdmin();
 
         $servicios = Servicio::all();
 
-         // 🔍 Depuración: imprime algo y detiene la ejecución
-         echo "<h1>Servicios</h1>";
-        var_dump($servicios);
-        exit;
+       
 
         $router->render('servicios/index', [
             'nombre' => $_SESSION['nombre'],
