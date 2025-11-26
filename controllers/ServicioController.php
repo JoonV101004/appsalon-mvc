@@ -9,7 +9,7 @@ class ServicioController {
     public static function index(Router $router) {
         session_start();
 
-        isAdmin();
+       // isAdmin();
 
         $servicios = Servicio::all();
 
@@ -36,9 +36,9 @@ class ServicioController {
             }
         }
 
-        echo "Entrando a la vista de servicios...";
+      /*  echo "Entrando a la vista de servicios...";
         var_dump($servicios);
-        exit;
+        exit;*/
 
         $router->render('servicios/crear', [
             'nombre' => $_SESSION['nombre'],
