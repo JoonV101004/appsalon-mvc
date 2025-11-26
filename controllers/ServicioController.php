@@ -36,6 +36,10 @@ class ServicioController {
             }
         }
 
+        echo "Entrando a la vista de servicios...";
+        var_dump($servicios);
+        exit;
+
         $router->render('servicios/crear', [
             'nombre' => $_SESSION['nombre'],
             'servicio' => $servicio,
