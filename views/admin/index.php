@@ -69,3 +69,17 @@
 <?php
     $script = "<script src='build/js/buscador.js'></script>"
 ?>
+
+
+<!-- Chatbot flotante -->
+<div id="chatbot">
+  <div id="messages"></div>
+  <div id="input-area">
+    <input type="text" id="userInput" placeholder="Escribe tu mensaje...">
+    <button onclick="sendMessage()">Enviar</button>
+  </div>
+</div>
+
+
+<!-- Enlace al script del bot -->
+<script src="/js/bot.js"></script>
