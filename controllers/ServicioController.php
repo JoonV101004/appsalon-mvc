@@ -13,6 +13,8 @@ class ServicioController {
 
         $servicios = Servicio::all();
 
+       
+
         $router->render('servicios/index', [
             'nombre' => $_SESSION['nombre'],
             'servicios' => $servicios
@@ -35,6 +37,10 @@ class ServicioController {
                 header('Location: /servicios');
             }
         }
+
+      /*  echo "Entrando a la vista de servicios...";
+        var_dump($servicios);
+        exit;*/
 
         $router->render('servicios/crear', [
             'nombre' => $_SESSION['nombre'],

@@ -10,13 +10,13 @@ class Cita extends ActiveRecord {
     public $id;
     public $fecha;
     public $hora;
-    public $usuarioId;
+    public $usuarioid; //  igual que en la base
 
     public function __construct($args = [])
     {
         $this->id = $args['id'] ?? null;
         $this->fecha = $args['fecha'] ?? '';
         $this->hora = $args['hora'] ?? '';
-        $this->usuarioId = $args['usuarioid'] ?? '';
+        $this->usuarioid = $args['usuarioid'] ?? ''; // S igual que en la base
     }
 }

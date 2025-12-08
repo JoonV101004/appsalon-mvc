@@ -18,6 +18,37 @@
     <?php
         echo $script ?? '';
     ?>
+
+    <script>
+    // 1. AL CARGAR: Si venimos del caché ("Atrás"), ocultamos todo inmediatamente y recargamos
+    window.onpageshow = function(event) {
+        if (event.persisted) {
+            // Ocultar contenido inmediatamente para evitar el "flash" de 2 segundos
+            document.body.style.display = 'none';
+            window.location.reload();
+        }
+    };
+
+    // 2. AL SALIR: Interceptar el click de Logout
+    const botonLogout = document.querySelector('#boton-logout');
+
+    if(botonLogout) {
+        botonLogout.addEventListener('click', function(e) {
+            // A) DETENER la navegación normal
+            e.preventDefault();
+
+            // B) DESTRUIR el contenido visual
+            document.body.innerHTML = '';
+            document.body.style.backgroundColor = 'white';
+
+            // C) Esperar un instante para asegurar que el navegador "vea" la pantalla blanca
+            setTimeout(function() {
+                // D) Ahora sí, irnos
+                window.location.href = '/logout';
+            }, 50); 
+        });
+    }
+    </script>
             
 </body>
 </html>
