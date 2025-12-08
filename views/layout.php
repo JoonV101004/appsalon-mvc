@@ -50,7 +50,7 @@
     }
     </script>
 
-    <link rel="stylesheet" href="/chatbot.css">
+   <link rel="stylesheet" href="/public/chatbot.css">
 
 <div id="chat-button">💬</div>
 
@@ -62,7 +62,7 @@
     </div>
 </div>
 
-<script src="/chatbot.js"></script>
+<script src="/public/chatbot.js" defer></script> 
             
 </body>
 </html>
