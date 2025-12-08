@@ -49,6 +49,20 @@
         });
     }
     </script>
+
+    <link rel="stylesheet" href="/chatbot.css">
+
+<div id="chat-button">💬</div>
+
+<div id="chat-window">
+    <div id="chat-messages"></div>
+    <div id="chat-input">
+        <input id="chat-user-input" type="text" placeholder="Escribe tu mensaje...">
+        <button id="chat-send">Enviar</button>
+    </div>
+</div>
+
+<script src="/chatbot.js"></script>
             
 </body>
 </html>
