@@ -7,8 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700;900&display=swap" rel="stylesheet"> 
     
     <link rel="stylesheet" href="/build/css/app.css">
-    
-    <link rel="stylesheet" href="/public/chatbot.css">
+    <link rel="stylesheet" href="/chatbot.css">
 </head>
 <body>
     <div class="contenedor-app">
@@ -57,7 +56,7 @@
         </div>
     </div>
 
-    <script src="/public/chatbot.js" defer></script> 
+    <script src="/chatbot.js" defer></script>
             
 </body>
 </html>
