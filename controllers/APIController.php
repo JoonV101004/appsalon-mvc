@@ -16,6 +16,23 @@ class APIController {
         
         // Almacena la Cita y devuelve el ID
         $cita = new Cita($_POST);
+
+        // --- VALIDACIÓN DE DISPONIBILIDAD ---
+        // Consultamos si ya existe una cita con esa FECHA y HORA
+        $query = "SELECT * FROM citas WHERE fecha = '" . $cita->fecha . "' AND hora = '" . $cita->hora . "' LIMIT 1";
+        
+        // Usamos el método SQL que tienes en ActiveRecord
+        $existeCita = Cita::SQL($query);
+
+        if($existeCita) {
+            // Si ya existe, no guardamos y devolvemos error
+            echo json_encode([
+                'resultado' => false,
+                'mensaje' => 'Lo sentimos, ese horario ya no está disponible'
+            ]);
+            return; // Detenemos la ejecución
+        }
+
         $resultado = $cita->guardar();
 
         $id = $resultado['id'];

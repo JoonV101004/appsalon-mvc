@@ -365,6 +365,13 @@ async function reservarCita() {
         title: 'Error',
         text: resultado.mensaje || 'No se pudo guardar la cita, verifica los datos.'
     });
+} else if (!resultado.resultado) {
+    // CASO ERROR (Horario ocupado)
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: resultado.mensaje // Aquí mostramos el mensaje que mandó PHP
+            });
 }
         
 
