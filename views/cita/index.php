@@ -39,6 +39,7 @@
                     id="fecha"
                     type="date"
                     min="<?php echo date('Y-m-d', strtotime('+1 day') ); ?>"
+                    max="<?php echo date('Y-m-d', strtotime('+2 months') ); ?>"
                 />
             </div>
 
