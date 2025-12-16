@@ -15,21 +15,26 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function iniciarApp() {
-    mostrarSeccion(); // Muestra y oculta las secciones
-    tabs(); // Cambia la sección cuando se presionen los tabs
-    botonesPaginador(); // Agrega o quita los botones del paginador
+    mostrarSeccion();
+    tabs();
+    botonesPaginador();
     paginaSiguiente(); 
     paginaAnterior();
 
-    consultarAPI(); // Consulta la API en el backend de PHP
+    consultarAPI();
 
     idCliente();
-    nombreCliente(); // Añade el nombre del cliente al objeto de cita
-    seleccionarFecha(); // Añade la fecha de la cita en el objeto
-    seleccionarHora(); // Añade la hora de la cita en el objeto
+    nombreCliente();
+    seleccionarFecha();
+    seleccionarHora();
 
-    mostrarResumen(); // Muestra el resumen de la cita
+    // Captura inicial de valores si el usuario no los modifica
+    cita.fecha = document.querySelector('#fecha').value;
+    cita.hora = document.querySelector('#hora').value;
+
+    mostrarResumen();
 }
+
 
 function mostrarSeccion() {
 
