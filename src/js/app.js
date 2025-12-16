@@ -262,16 +262,13 @@ function mostrarResumen() {
         resumen.removeChild(resumen.firstChild);
     }
 
-    if(Object.values(cita).includes('') || cita.servicios.length === 0 ) {
+    // Validación REAL: solo fecha, hora y servicios
+    if(cita.fecha === '' || cita.hora === '' || cita.servicios.length === 0) {
         mostrarAlerta('Faltan datos de Servicios, Fecha u Hora', 'error', '.contenido-resumen', false);
-
         return;
-    } 
+    }
 
-    // Formatear el div de resumen
-    const { nombre, fecha, hora, servicios } = cita;
-
-
+    const { nombre, fecha, hora, servicios } = cita;
 
     // Heading para Servicios en Resumen
     const headingServicios = document.createElement('H3');
@@ -280,7 +277,7 @@ function mostrarResumen() {
 
     // Iterando y mostrando los servicios
     servicios.forEach(servicio => {
-        const { id, precio, nombre } = servicio;
+        const { precio, nombre } = servicio;
         const contenedorServicio = document.createElement('DIV');
         contenedorServicio.classList.add('contenedor-servicio');
 
@@ -310,9 +307,8 @@ function mostrarResumen() {
     const dia = fechaObj.getDate() + 2;
     const year = fechaObj.getFullYear();
 
-    const fechaUTC = new Date( Date.UTC(year, mes, dia));
-    
-    const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}
+    const fechaUTC = new Date(Date.UTC(year, mes, dia));
+    const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const fechaFormateada = fechaUTC.toLocaleDateString('es-MX', opciones);
 
     const fechaCita = document.createElement('P');
@@ -321,7 +317,7 @@ function mostrarResumen() {
     const horaCita = document.createElement('P');
     horaCita.innerHTML = `<span>Hora:</span> ${hora} Horas`;
 
-    // Boton para Crear una cita
+    // Botón para Crear una cita
     const botonReservar = document.createElement('BUTTON');
     botonReservar.classList.add('boton');
     botonReservar.textContent = 'Reservar Cita';
@@ -330,9 +326,9 @@ function mostrarResumen() {
     resumen.appendChild(nombreCliente);
     resumen.appendChild(fechaCita);
     resumen.appendChild(horaCita);
-
     resumen.appendChild(botonReservar);
 }
+
 
 async function reservarCita() {
     
