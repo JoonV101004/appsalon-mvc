@@ -199,25 +199,28 @@ function seleccionarHora() {
     const inputHora = document.querySelector('#hora');
     inputHora.addEventListener('input', function(e) {
 
-
         const horaCita = e.target.value;
-        const hora = horaCita.split(":")[0];
+        const [hora, minutos] = horaCita.split(":");
+
+        // Validar horario permitido
         if(hora < 10 || hora > 18) {
             e.target.value = '';
             mostrarAlerta('Hora No Válida', 'error', '.formulario');
+            return;
         }
+
+        // Validar minutos permitidos
         if(minutos !== '00' && minutos !== '30') {
-             e.target.value = '';
-             mostrarAlerta('Solo se permiten citas en punto o a la media hora (Ej: 10:00, 10:30)', 'error', '.formulario');
-             return;
+            e.target.value = '';
+            mostrarAlerta('Solo se permiten citas en punto o a la media hora (Ej: 10:00, 10:30)', 'error', '.formulario');
+            return;
         }
 
-            cita.hora = e.target.value;
-
-            // console.log(cita);
-        
-    })
+        // Si todo está bien, guardar la hora
+        cita.hora = e.target.value;
+    });
 }
+
 
 function mostrarAlerta(mensaje, tipo, elemento, desaparece = true) {
 

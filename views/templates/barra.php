@@ -1,5 +1,11 @@
 <div class="barra">
     <p>Hola: <?php echo $nombre ?? ''; ?></p>
+
+    <!-- Botón para usuarios normales -->
+    <?php if(!isset($_SESSION['admin'])) { ?>
+        <a class="boton" href="/misCitas">Mis Citas</a>
+    <?php } ?>
+
     <a class="boton" href="/logout" class="boton-logout">Cerrar Sesión</a>
 </div>
 
