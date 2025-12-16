@@ -67,4 +67,45 @@ class APIController {
             header('Location:' . $_SERVER['HTTP_REFERER']);
         }
     }
+
+    public static function cancelar() {
+    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        session_start();
+
+        // ID de la cita enviada desde el formulario
+        $id = $_POST['id'];
+
+        // Buscar la cita
+        $cita = Cita::find($id);
+
+        // Validar que la cita exista
+        if(!$cita) {
+            echo json_encode([
+                'resultado' => false,
+                'mensaje' => 'La cita no existe'
+            ]);
+            return;
+        }
+
+        // Validar que la cita pertenece al usuario logueado
+        if($cita->usuarioid !== $_SESSION['id']) {
+            echo json_encode([
+                'resultado' => false,
+                'mensaje' => 'No tienes permiso para cancelar esta cita'
+            ]);
+            return;
+        }
+
+        // Marcar como cancelada (NO eliminarla)
+        $cita->estado = 'cancelada';
+        $cita->guardar();
+
+        echo json_encode([
+            'resultado' => true,
+            'mensaje' => 'Cita cancelada correctamente'
+            ]);
+        }
+    }
+
 }

@@ -31,12 +31,15 @@ $router->get('/mensaje', [LoginController::class, 'mensaje']);
 
 // AREA PRIVADA
 $router->get('/cita', [CitaController::class, 'index']);
+$router->get('/misCitas', [CitaController::class, 'misCitas']);
 $router->get('/admin', [AdminController::class, 'index']);
 
 // API de Citas
 $router->get('/api/servicios', [APIController::class, 'index']);
 $router->post('/api/citas', [APIController::class, 'guardar']);
 $router->post('/api/eliminar', [APIController::class, 'eliminar']);
+$router->post('/api/cancelar', [APIController::class, 'cancelar']);
+
 
 // CRUD de Servicios
 $router->get('/servicios', [ServicioController::class, 'index']);
