@@ -205,11 +205,17 @@ function seleccionarHora() {
         if(hora < 10 || hora > 18) {
             e.target.value = '';
             mostrarAlerta('Hora No Válida', 'error', '.formulario');
-        } else {
+        }
+        if(minutos !== '00' && minutos !== '30') {
+             e.target.value = '';
+             mostrarAlerta('Solo se permiten citas en punto o a la media hora (Ej: 10:00, 10:30)', 'error', '.formulario');
+             return;
+        }
+
             cita.hora = e.target.value;
 
             // console.log(cita);
-        }
+        
     })
 }
 
