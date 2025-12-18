@@ -10,12 +10,23 @@
             <p>Fecha: <span><?php echo $cita->fecha; ?></span></p>
             <p>Hora: <span><?php echo $cita->hora; ?></span></p>
 
-            <form action="/api/citas/cancelar" method="POST">
-                 <input type="hidden" name="id" value="<?php echo $cita->id; ?>">
-                <input type="submit" class="boton-eliminar" value="Cancelar Cita">
-            </form>
+            <?php 
+                // Crear objetos DateTime para comparar
+                $fechaCita = new DateTime($cita->fecha . ' ' . $cita->hora);
+                $hoy = new DateTime();
 
-
+                if($fechaCita > $hoy && $cita->estado !== 'cancelada') { ?>
+                    <!-- Botón de cancelar solo para citas futuras y activas -->
+                    <form action="/api/citas/cancelar" method="POST">
+                        <input type="hidden" name="id" value="<?php echo $cita->id; ?>">
+                        <input type="submit" class="boton-eliminar" value="Cancelar Cita">
+                    </form>
+                <?php } else { ?>
+                    <!-- Texto para citas pasadas o ya canceladas -->
+                    <p><strong>Estado:</strong> 
+                        <?php echo $cita->estado === 'cancelada' ? 'Cancelada' : 'Finalizada'; ?>
+                    </p>
+                <?php } ?>
         </li>
     <?php } ?>
 </ul>

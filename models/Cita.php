@@ -5,18 +5,20 @@ namespace Model;
 class Cita extends ActiveRecord {
     // Base de datos
     protected static $tabla = 'citas';
-    protected static $columnasDB = ['id', 'fecha', 'hora', 'usuarioid'];
+    protected static $columnasDB = ['id', 'fecha', 'hora', 'usuarioid', 'estado'];
 
     public $id;
     public $fecha;
     public $hora;
-    public $usuarioid; //  igual que en la base
+    public $usuarioid;
+    public $estado; // ✅ propiedad agregada
 
     public function __construct($args = [])
     {
         $this->id = $args['id'] ?? null;
         $this->fecha = $args['fecha'] ?? '';
         $this->hora = $args['hora'] ?? '';
-        $this->usuarioid = $args['usuarioid'] ?? ''; // S igual que en la base
+        $this->usuarioid = $args['usuarioid'] ?? '';
+        $this->estado = $args['estado'] ?? 'activa'; // ✅ valor por defecto
     }
 }
