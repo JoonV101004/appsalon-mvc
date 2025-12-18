@@ -45,10 +45,10 @@ class CitaController {
                 $resultado = $cita->guardar();
 
                 if ($resultado) {
-                    header('Location: /mis-citas?mensaje=Cita cancelada correctamente');
+                    header('Location: /misCitas?mensaje=Cita cancelada correctamente');
                     exit;
                 } else {
-                    header('Location: /mis-citas?mensaje=Error al cancelar la cita');
+                    header('Location: /misCitas?mensaje=Error al cancelar la cita');
                     exit;
                 }
             }

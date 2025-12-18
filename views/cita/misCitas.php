@@ -1,5 +1,9 @@
 <h1 class="nombre-pagina">Mis Citas</h1>
 
+<?php if(!empty($_GET['mensaje'])) { ?>
+    <p class="alerta exito"><?php echo htmlspecialchars($_GET['mensaje']); ?></p>
+<?php } ?>
+
 <?php if(empty($citas)) { ?>
     <p>No tienes citas agendadas.</p>
 <?php } ?>
