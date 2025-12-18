@@ -10,10 +10,12 @@
             <p>Fecha: <span><?php echo $cita->fecha; ?></span></p>
             <p>Hora: <span><?php echo $cita->hora; ?></span></p>
 
-            <form action="/api/cancelar" method="POST">
-                <input type="hidden" name="id" value="<?php echo $cita->id; ?>">
+            <form action="/api/citas/cancelar" method="POST">
+                 <input type="hidden" name="id" value="<?php echo $cita->id; ?>">
                 <input type="submit" class="boton-eliminar" value="Cancelar Cita">
             </form>
+
+
         </li>
     <?php } ?>
 </ul>

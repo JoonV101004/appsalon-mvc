@@ -31,4 +31,29 @@ class CitaController {
             'citas' => $citas
         ]);
     }
+    public static function cancelar() {
+    session_start();
+    isAuth();
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id = $_POST['id'] ?? null;
+
+        if ($id) {
+            $cita = Cita::find($id);
+            if ($cita) {
+                $cita->estado = 'cancelada';
+                $resultado = $cita->guardar();
+
+                if ($resultado) {
+                    header('Location: /mis-citas?mensaje=Cita cancelada correctamente');
+                    exit;
+                } else {
+                    header('Location: /mis-citas?mensaje=Error al cancelar la cita');
+                    exit;
+                }
+            }
+        }
+    }
+}
+
 }

@@ -40,6 +40,12 @@
                     <p>Cliente: <span><?php echo $cita->cliente; ?></span></p>
                     <p>Email: <span><?php echo $cita->email; ?></span></p>
                     <p>Email: <span><?php echo $cita->telefono; ?></span></p>
+                    <p>Estado: 
+                        <span 
+                            style="color: <?php echo $cita->estado === 'cancelada' ? 'red' : 'green'; ?>">
+                            <?php echo ucfirst($cita->estado); ?>
+                             </span>
+                        </p>
 
                     <h3>Servicios</h3>
             <?php 

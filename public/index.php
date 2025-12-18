@@ -39,6 +39,8 @@ $router->get('/api/servicios', [APIController::class, 'index']);
 $router->post('/api/citas', [APIController::class, 'guardar']);
 $router->post('/api/eliminar', [APIController::class, 'eliminar']);
 $router->post('/api/cancelar', [APIController::class, 'cancelar']);
+$router->post('/api/citas/cancelar', [CitaController::class, 'cancelar']);
+
 
 
 // CRUD de Servicios
